@@ -5,6 +5,8 @@ from keras.layers import Conv2D, MaxPooling2D, GlobalAveragePooling2D
 from keras.layers import Dropout, Flatten, Dense
 from keras.models import Sequential, Model
 
+# Example network from the Udacity problem set
+#
 # layer                     output shape            params
 #------------------------------------------------------------
 # conv2d                    (None, 223, 223, 16)    208
@@ -16,28 +18,35 @@ from keras.models import Sequential, Model
 # globalaveragepooling2d    (None, 64)
 # dense                     (None, 133)
 
+# Sequential Implementation
+
 model1 = Sequential()
-model1.add(Conv2D(16, (2, 2), input_shape=(224, 224, 3)))
-model1.add(MaxPooling2D((2, 2), ))
-model1.add(Conv2D(32, (2, 2),))
-model1.add(MaxPooling2D((2, 2), ))
-model1.add(Conv2D(64, (2, 2),))
-model1.add(MaxPooling2D((2, 2), ))
+model1.add(Conv2D(16, (2, 2), input_shape=(224, 224, 3), activation='relu'))
+model1.add(MaxPooling2D((2, 2)))
+model1.add(Conv2D(32, (2, 2), activation='relu'))
+model1.add(MaxPooling2D((2, 2)))
+model1.add(Conv2D(64, (2, 2), activation='relu'))
+model1.add(MaxPooling2D((2, 2)))
 model1.add(GlobalAveragePooling2D())
-model1.add(Dense(133))
+model1.add(Dense(133, activation='softmax'))
+
 # print summary of model1
 model1.summary()
 
 
+
+# Functional Implementation
+
 inputs = Input(shape=(224, 224, 3))
-x = Conv2D(16, (2, 2))(inputs)
+x = Conv2D(16, (2, 2), activation='relu')(inputs)
 x = MaxPooling2D((2, 2))(x)
-x = Conv2D(32, (2, 2))(x)
+x = Conv2D(32, (2, 2), activation='relu')(x)
 x = MaxPooling2D((2, 2))(x)
-x = Conv2D(64, (2, 2))(x)
+x = Conv2D(64, (2, 2), activation='relu')(x)
 x = MaxPooling2D((2, 2))(x)
 x = GlobalAveragePooling2D()(x)
-predictions = Dense(133)(x)
+predictions = Dense(133, activation='softmax')(x)
+
 model2 = Model(inputs=inputs, outputs=predictions)
 # print summary of model2
 model2.summary()
