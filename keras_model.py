@@ -8,7 +8,7 @@ from keras.models import Sequential, Model
 # Example network from the Udacity problem set
 #
 # layer                     output shape            params
-#------------------------------------------------------------
+#-----------------------------------------------------------
 # conv2d                    (None, 223, 223, 16)    208
 # maxPool2d                 (None, 111, 111, 16)    0
 # conv2d                    (None, 110, 110, 32)
@@ -17,6 +17,11 @@ from keras.models import Sequential, Model
 # maxPool2d                 (None, 27, 27, 64)
 # globalaveragepooling2d    (None, 64)
 # dense                     (None, 133)
+#-----------------------------------------------------------
+# Total params: 19,189.0
+# Trainable params: 19,189.0
+# Non-trainable params: 0.0
+
 
 # Sequential Implementation
 
