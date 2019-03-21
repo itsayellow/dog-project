@@ -255,7 +255,7 @@ if 'val_acc' in history.history:
 plt.show()
 
 # Load the model with the best validation loss
-model.load_weights('saved_models/weights.best.from_scratch.hdf5')
+model.load_weights(model_save_dir + '/weights.best.from_scratch.hdf5')
 
 # Try out your model on the test dataset of dog images.
 # Ensure that your test accuracy is greater than 1%.
